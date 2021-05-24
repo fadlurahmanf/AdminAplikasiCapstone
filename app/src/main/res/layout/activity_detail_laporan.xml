@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetailLaporanActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/detailLaporanActivity_linearlayout1"
+        android:layout_marginVertical="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/detailLaporanActivity_disasterType"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="TIPE BENCANA"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="-"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/detailLaporanActivity_disasterLocation"
+            android:text="LOKASI"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="250dp"
+        android:id="@+id/detailLaporanActivity_disasterPhoto"
+        app:layout_constraintTop_toBottomOf="@id/detailLaporanActivity_linearlayout1"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_camera_black"
+        android:layout_height="250dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:id="@+id/detailLaporanActivity_linearlayout2"
+        app:layout_constraintTop_toBottomOf="@id/detailLaporanActivity_disasterPhoto"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="LAPORAN OLEH"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text=":"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="EMAIL PELAPOR"
+            android:textStyle="bold"
+            android:id="@+id/detailLaporanActivity_reportByEmail"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/detailLaporanActivity_linearlayout3"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toBottomOf="@id/detailLaporanActivity_linearlayout2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="DILAPORKAN PADA"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text=":"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="JAM LAPORAN"
+            android:textStyle="bold"
+            android:id="@+id/detailLaporanActivity_disasterTime"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/detailLaporanActivity_linearlayout4"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toBottomOf="@id/detailLaporanActivity_linearlayout3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="DETAIL LOKASI"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text=":"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_location_black"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="OPEN MAPS"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            android:letterSpacing="0.1"
+            android:id="@+id/detailLaporanActivity_disasterDetailMapLocation"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/detailLaporanActivity_linearlayout5"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/detailLaporanActivity_linearlayout4"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="DETAIIL : "
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/detailLaporanActivity_disasterDetailText"
+            android:text="KOSONG"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

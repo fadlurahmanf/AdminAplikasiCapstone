@@ -12,6 +12,16 @@ import com.example.adminaplikasicapstone.R
 import com.example.adminaplikasicapstone.models.DisasterCaseDataModels
 
 class ListDisasterCaseAdapter(var listDisasterCase: ArrayList<DisasterCaseDataModels>):RecyclerView.Adapter<ListDisasterCaseAdapter.ListViewHolder>() {
+    private lateinit var onItemClickCallback:OnItemClickCallback
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data:DisasterCaseDataModels)
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback:OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     inner class ListViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
         var reportByEmail:TextView = itemView.findViewById(R.id.item_disasterReportBy)
         var disasterCasePhoto:ImageView = itemView.findViewById(R.id.item_image_disasterCase)
@@ -44,7 +54,7 @@ class ListDisasterCaseAdapter(var listDisasterCase: ArrayList<DisasterCaseDataMo
         }
 
         holder.itemView.setOnClickListener {
-            println(disasterCaseData.disasterCaseDataPhoto)
+            onItemClickCallback.onItemClicked(listDisasterCase[holder.adapterPosition])
         }
     }
 }

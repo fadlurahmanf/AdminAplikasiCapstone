@@ -1,5 +1,6 @@
 package com.example.adminaplikasicapstone.ui.waiting
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adminaplikasicapstone.R
 import com.example.adminaplikasicapstone.models.DisasterCaseDataModels
+import com.example.adminaplikasicapstone.ui.DetailLaporanActivity
 import com.example.adminaplikasicapstone.utils.ConvertTime
 import com.example.adminaplikasicapstone.utils.adapter.ListDisasterCaseAdapter
 import com.example.adminaplikasicapstone.utils.firebasestorage.FirebaseStorageServices
@@ -36,9 +38,6 @@ class WaitingFragment : Fragment(), View.OnClickListener {
     private lateinit var loadingProgressBar:ProgressBar
     private lateinit var recycleViewLayout:RecyclerView
 
-    private lateinit var coba:Button
-
-
     private var listDisasterCaseData:ArrayList<DisasterCaseDataModels> = ArrayList<DisasterCaseDataModels>()
 
     override fun onCreateView(
@@ -60,16 +59,12 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         initializationIdLayout(view)
         getAllDisasterCaseData()
-
     }
 
     private var disasterModel = DisasterCaseDataModels()
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.coba->{
-                getAllDisasterCaseData()
-            }
         }
     }
 
@@ -77,6 +72,15 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         recycleViewLayout.layoutManager = LinearLayoutManager(this.context)
         var adapter = ListDisasterCaseAdapter(listDisasterCaseData)
         recycleViewLayout.adapter = adapter
+
+        adapter.setOnItemClickCallback(object : ListDisasterCaseAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: DisasterCaseDataModels) {
+                var disasterData:DisasterCaseDataModels = data
+                val intent=Intent(this@WaitingFragment.context, DetailLaporanActivity::class.java)
+                intent.putExtra(DetailLaporanActivity.DISASTER_CASE_DATA, disasterData)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun getAllDisasterCaseData(){
@@ -115,8 +119,6 @@ class WaitingFragment : Fragment(), View.OnClickListener {
     private fun initializationIdLayout(view: View) {
         recycleViewLayout = view.findViewById(R.id.waitingfragment_recycleviewlayout)
         loadingProgressBar = view.findViewById(R.id.waitingfragment_loadingbar)
-        coba = view.findViewById(R.id.coba)
 
-        coba.setOnClickListener(this)
     }
 }
