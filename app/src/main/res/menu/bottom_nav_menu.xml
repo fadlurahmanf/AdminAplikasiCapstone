@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_waiting"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="WAITING" />
+
+    <item
+        android:id="@+id/navigation_onProgress"
+        android:icon="@drawable/ic_on_progress_black"
+        android:title="ON PROGRESS"/>
+
+    <item
+        android:id="@+id/navigation_complete"
+        android:icon="@drawable/ic_done_black"
+        android:title="COMPLETE" />
+
+</menu>

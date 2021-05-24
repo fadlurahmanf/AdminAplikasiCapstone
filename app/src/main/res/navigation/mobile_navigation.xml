@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_waiting">
+
+    <fragment
+        android:id="@+id/navigation_waiting"
+        android:name="com.example.adminaplikasicapstone.ui.waiting.WaitingFragment"
+        android:label="Waiting"
+        tools:layout="@layout/fragment_waiting" />
+
+    <fragment
+        android:id="@+id/navigation_onProgress"
+        android:name="com.example.adminaplikasicapstone.ui.onprogress.OnProgressFragment"
+        android:label="On Progress"
+        tools:layout="@layout/fragment_onprogress" />
+
+    <fragment
+        android:id="@+id/navigation_complete"
+        android:name="com.example.adminaplikasicapstone.ui.complete.CompleteFragment"
+        android:label="Complete"
+        tools:layout="@layout/fragment_complete" />
+</navigation>
