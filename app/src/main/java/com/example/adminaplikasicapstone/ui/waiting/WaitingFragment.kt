@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,13 +20,17 @@ import com.example.adminaplikasicapstone.utils.ConvertTime
 import com.example.adminaplikasicapstone.utils.adapter.ListDisasterCaseAdapter
 import com.example.adminaplikasicapstone.utils.firebasestorage.FirebaseStorageServices
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_CASE_DATE
+import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_CASE_DETAIL
+import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_CASE_ID
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_CASE_IMAGE
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_CASE_STATUS
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_LATITUDE
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_LOCATION
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_LONGITUDE
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL
+import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_REPORT_BY_PHONE_NUMBER
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreServices
+import com.google.firebase.storage.StorageException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -37,6 +42,8 @@ class WaitingFragment : Fragment(), View.OnClickListener {
     private lateinit var waitingViewModel: WaitingViewModel
     private lateinit var loadingProgressBar:ProgressBar
     private lateinit var recycleViewLayout:RecyclerView
+
+    private lateinit var conba:Button
 
     private var listDisasterCaseData:ArrayList<DisasterCaseDataModels> = ArrayList<DisasterCaseDataModels>()
 
@@ -59,9 +66,12 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         initializationIdLayout(view)
         getAllDisasterCaseData()
-    }
+        setRecycleView()
 
-    private var disasterModel = DisasterCaseDataModels()
+        conba = view.findViewById(R.id.coba)
+        conba.setOnClickListener {
+        }
+    }
 
     override fun onClick(v: View?) {
         when(v?.id){
@@ -95,14 +105,21 @@ class WaitingFragment : Fragment(), View.OnClickListener {
                         if (document[COL_DISASTER_CASE_STATUS].toString()=="waiting"){
                             var firebaseStorageServices = FirebaseStorageServices()
                             var disasterCaseDataModels = DisasterCaseDataModels()
+                            disasterCaseDataModels.disasterCaseID = document[COL_DISASTER_CASE_ID].toString()
                             disasterCaseDataModels.reportByEmail = document[COL_DISASTER_REPORT_BY_EMAIL].toString()
                             disasterCaseDataModels.disasterLocation = document[COL_DISASTER_LOCATION].toString()
                             disasterCaseDataModels.disasterLatitude = document[COL_DISASTER_LATITUDE].toString()
                             disasterCaseDataModels.disasterLongitude = document[COL_DISASTER_LONGITUDE].toString()
                             disasterCaseDataModels.disasterCaseStatus = document[COL_DISASTER_CASE_STATUS].toString()
-                            var urlImage = firebaseStorageServices.DisasterCaseData().getImageURLByName(document[COL_DISASTER_CASE_IMAGE].toString()).await()
-                            disasterCaseDataModels.disasterCaseDataPhoto = urlImage.toString()
+                            disasterCaseDataModels.reportByPhoneNumber = document[COL_DISASTER_REPORT_BY_PHONE_NUMBER].toString()
+                            try {
+                                var urlImage = firebaseStorageServices.DisasterCaseData().getImageURLByName(document[COL_DISASTER_CASE_IMAGE].toString()).await()
+                                disasterCaseDataModels.disasterCaseDataPhoto = urlImage.toString()
+                            }catch (e:StorageException){
+                                println("NGELEMPAR ERROR BUKANNYA EXCEPTION, DATA DI FIREBASE STORAGE GA ADA")
+                            }
                             disasterCaseDataModels.disasterDateTime = ConvertTime.getTimeByTimeStamp(document[COL_DISASTER_CASE_DATE].toString().toLong()).toString()
+                            disasterCaseDataModels.disasterCaseDetail = document[COL_DISASTER_CASE_DETAIL].toString()
                             listDisasterCaseData.add(disasterCaseDataModels)
                         }
                     }

@@ -3,6 +3,7 @@ package com.example.adminaplikasicapstone.utils.firebasestorage
 import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class FirebaseStorageServices {
@@ -17,7 +18,11 @@ class FirebaseStorageServices {
             }
         }
         fun getImageURLByName(name:String): Task<Uri> {
+            println("KEDUA")
             return firebaseStorageServices.child("disasterCaseData/${name}").downloadUrl
+        }
+        fun getImage(name: String): StorageReference {
+            return firebaseStorageServices.child("disasterCaseData/${name}")
         }
     }
 }
