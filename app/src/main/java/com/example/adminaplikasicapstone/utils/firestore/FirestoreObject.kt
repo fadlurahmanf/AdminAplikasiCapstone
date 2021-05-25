@@ -9,6 +9,7 @@ object FirestoreObject {
     const val COL_PHONE_NUMBER = "phone_number"
 
     const val COLLECTION_DISASTER_CASE_DATA = "disasterCaseData"
+    const val COL_DISASTER_CASE_ID = "_id"
     const val COL_DISASTER_CASE_DATE = "date_time"
     const val COL_DISASTER_CASE_IMAGE = "image"
     const val COL_DISASTER_LOCATION = "location"
@@ -18,4 +19,5 @@ object FirestoreObject {
     const val COL_DISASTER_LATITUDE = "latitude"
     const val COL_DISASTER_LONGITUDE = "longitude"
     const val COL_DISASTER_CASE_STATUS = "status"
+    const val COL_DISASTER_CASE_DETAIL = "detail"
 }

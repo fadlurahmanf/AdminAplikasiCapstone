@@ -25,5 +25,8 @@ class FirestoreServices {
                     .get()
 
         }
+        fun updateStatus(status: String, document:String): Task<Void> {
+            return firestoreService.collection(COLLECTION_DISASTER_CASE_DATA).document(document).update(COL_DISASTER_CASE_STATUS, status)
+        }
     }
 }
