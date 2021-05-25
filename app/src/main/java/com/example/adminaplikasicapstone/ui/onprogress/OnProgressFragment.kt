@@ -1,25 +1,36 @@
 package com.example.adminaplikasicapstone.ui.onprogress
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adminaplikasicapstone.R
 import com.example.adminaplikasicapstone.models.DisasterCaseDataModels
+import com.example.adminaplikasicapstone.ui.DetailLaporanActivity
 import com.example.adminaplikasicapstone.utils.adapter.ListDisasterCaseAdapter
 import com.example.adminaplikasicapstone.utils.ConvertTime
+import com.example.adminaplikasicapstone.utils.firebasestorage.FirebaseStorageServices
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreServices
+import com.google.firebase.storage.StorageException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class OnProgressFragment : Fragment() {
 
     private lateinit var onProgressViewModel: OnProgressViewModel
 
     private lateinit var recycleviewlayout:RecyclerView
+    private lateinit var loadingProgressBar: ProgressBar
 
     private var listDisasterCaseData:ArrayList<DisasterCaseDataModels> = ArrayList<DisasterCaseDataModels>()
 
@@ -50,6 +61,15 @@ class OnProgressFragment : Fragment() {
         recycleviewlayout.layoutManager = LinearLayoutManager(this.context)
         var adapter = ListDisasterCaseAdapter(listDisasterCaseData)
         recycleviewlayout.adapter = adapter
+
+        adapter.setOnItemClickCallback(object : ListDisasterCaseAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: DisasterCaseDataModels) {
+                var disasterData:DisasterCaseDataModels = data
+                val intent = Intent(this@OnProgressFragment.context, DetailLaporanActivity::class.java)
+                intent.putExtra(DetailLaporanActivity.DISASTER_CASE_DATA, disasterData)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun getAllDisasterCaseOnProgressData(){
@@ -57,28 +77,43 @@ class OnProgressFragment : Fragment() {
         var getQuery = firestoreServices.DisasterCaseData().getAllDisasterCaseDataByStatus(status = "onProgress")
         listDisasterCaseData.clear()
         getQuery.addOnCompleteListener {
-            if (it.isSuccessful){
-//                loadingProgressBar.visibility = View.INVISIBLE
-                for (document in it.result!!) {
-                    if (document[FirestoreObject.COL_DISASTER_CASE_STATUS].toString()=="onProgress"){
-                        var disasterCaseDataModels = DisasterCaseDataModels()
-                        disasterCaseDataModels.reportByEmail = document[FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL].toString()
-                        disasterCaseDataModels.disasterLocation = document[FirestoreObject.COL_DISASTER_LOCATION].toString()
-                        disasterCaseDataModels.disasterLatitude = document[FirestoreObject.COL_DISASTER_LATITUDE].toString()
-                        disasterCaseDataModels.disasterLongitude = document[FirestoreObject.COL_DISASTER_LONGITUDE].toString()
-                        disasterCaseDataModels.disasterCaseStatus = document[FirestoreObject.COL_DISASTER_CASE_STATUS].toString()
-                        disasterCaseDataModels.disasterDateTime = ConvertTime.getTimeByTimeStamp(document[FirestoreObject.COL_DISASTER_CASE_DATE].toString().toLong()).toString()
-                        listDisasterCaseData.add(disasterCaseDataModels)
+            GlobalScope.launch(Dispatchers.IO) {
+                if (it.isSuccessful){
+                loadingProgressBar.visibility = View.INVISIBLE
+                    for (document in it.result!!) {
+                        if (document[FirestoreObject.COL_DISASTER_CASE_STATUS].toString()=="onProgress"){
+                            var firebaseStorageServices = FirebaseStorageServices()
+                            var disasterCaseDataModels = DisasterCaseDataModels()
+                            disasterCaseDataModels.disasterCaseID = document[FirestoreObject.COL_DISASTER_CASE_ID].toString()
+                            disasterCaseDataModels.reportByEmail = document[FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL].toString()
+                            disasterCaseDataModels.disasterLocation = document[FirestoreObject.COL_DISASTER_LOCATION].toString()
+                            disasterCaseDataModels.disasterLatitude = document[FirestoreObject.COL_DISASTER_LATITUDE].toString()
+                            disasterCaseDataModels.disasterLongitude = document[FirestoreObject.COL_DISASTER_LONGITUDE].toString()
+                            disasterCaseDataModels.disasterCaseStatus = document[FirestoreObject.COL_DISASTER_CASE_STATUS].toString()
+                            disasterCaseDataModels.reportByPhoneNumber = document[FirestoreObject.COL_DISASTER_REPORT_BY_PHONE_NUMBER].toString()
+                            try {
+                                var urlImage = firebaseStorageServices.DisasterCaseData().getImageURLByName(document[FirestoreObject.COL_DISASTER_CASE_IMAGE].toString()).await()
+                                disasterCaseDataModels.disasterCaseDataPhoto = urlImage.toString()
+                            }catch (e: StorageException){
+                                println("NGELEMPAR ERROR BUKANNYA EXCEPTION, DATA DI FIREBASE STORAGE GA ADA")
+                            }
+                            disasterCaseDataModels.disasterDateTime = ConvertTime.getTimeByTimeStamp(document[FirestoreObject.COL_DISASTER_CASE_DATE].toString().toLong()).toString()
+                            disasterCaseDataModels.disasterCaseDetail = document[FirestoreObject.COL_DISASTER_CASE_DETAIL].toString()
+                            listDisasterCaseData.add(disasterCaseDataModels)
+                        }
+                    }
+                    withContext(Dispatchers.Main){
+                        setRecycleViewLayout()
                     }
                 }
-                setRecycleViewLayout()
             }
         }.addOnFailureListener {
-//            loadingProgressBar.visibility = View.VISIBLE
+            loadingProgressBar.visibility = View.VISIBLE
         }
     }
 
     private fun initializationIdLayout(view: View) {
         recycleviewlayout = view.findViewById(R.id.fragmentOnProgress_recycleviewlayout)
+        loadingProgressBar = view.findViewById(R.id.fragmentOnProgress_loadingBar)
     }
 }

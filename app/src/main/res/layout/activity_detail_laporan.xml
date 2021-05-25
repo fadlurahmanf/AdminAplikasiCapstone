@@ -169,7 +169,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:id="@+id/detailLaporanActivity_linearlayout6"
+        android:id="@+id/detailLaporanActivity_linearlayout_if_waiting"
         app:layout_constraintTop_toBottomOf="@id/detailLaporanActivity_linearlayout5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -189,6 +189,27 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:id="@+id/detailLaporanActivity_btn_completeProgress"
+            android:paddingVertical="5dp"
+            android:text="SELESAI"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/detailLaporanActivity_linearlayoutOnProgress"
+        app:layout_constraintTop_toBottomOf="@id/detailLaporanActivity_linearlayout5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/detailLaporanActivity_btn_completeProgress_if_on_progress"
             android:paddingVertical="5dp"
             android:text="SELESAI"
             android:layout_marginHorizontal="10dp"

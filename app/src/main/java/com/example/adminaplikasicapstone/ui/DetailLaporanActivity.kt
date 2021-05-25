@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.adminaplikasicapstone.MainActivity
@@ -26,6 +27,8 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var disasterDetailText:TextView
     private lateinit var btn_startProgress:Button
     private lateinit var btn_completeProgress:Button
+    private lateinit var linearlayoutIfWaiting:LinearLayout
+    private lateinit var linearLayoutIfOnProgress:LinearLayout
 
     private lateinit var extras:DisasterCaseDataModels
     companion object{
@@ -55,28 +58,22 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
 
         extras = intent?.getParcelableExtra<DisasterCaseDataModels>(DISASTER_CASE_DATA) as DisasterCaseDataModels
 
+        if (extras.disasterCaseStatus.toString()=="waiting"){
+            linearlayoutIfWaiting.visibility = View.VISIBLE
+            linearLayoutIfOnProgress.visibility = View.INVISIBLE
+        }else if (extras.disasterCaseStatus.toString()=="onProgress"){
+            linearlayoutIfWaiting.visibility = View.INVISIBLE
+            linearLayoutIfOnProgress.visibility = View.VISIBLE
+        }else if (extras.disasterCaseStatus.toString()=="complete"){
+            linearlayoutIfWaiting.visibility = View.INVISIBLE
+            linearLayoutIfOnProgress.visibility = View.INVISIBLE
+        }
+
         disasterLocation.text = extras.disasterLocation.toString()
         Glide.with(disasterPhoto).load(extras.disasterCaseDataPhoto).into(disasterPhoto)
         reportByEmail.text = extras.reportByEmail.toString()
         disasterTime.text = extras.disasterDateTime.toString()
         disasterDetailText.text = extras.disasterCaseDetail.toString()
-    }
-
-    private fun initializationIdLayout() {
-        disasterLocation = findViewById(R.id.detailLaporanActivity_disasterLocation)
-        disasterPhoto = findViewById(R.id.detailLaporanActivity_disasterPhoto)
-        reportByEmail = findViewById(R.id.detailLaporanActivity_reportByEmail)
-        disasterTime = findViewById(R.id.detailLaporanActivity_disasterTime)
-        disasterMapDetailLocation = findViewById(R.id.detailLaporanActivity_disasterDetailMapLocation)
-        disasterDetailText = findViewById(R.id.detailLaporanActivity_disasterDetailText)
-        btn_startProgress = findViewById(R.id.detailLaporanActivity_btn_startProgress)
-        btn_completeProgress = findViewById(R.id.detailLaporanActivity_btn_completeProgress)
-
-        disasterMapDetailLocation.setOnClickListener(this)
-        disasterPhoto.setOnClickListener(this)
-        disasterDetailText.setOnClickListener(this)
-        btn_startProgress.setOnClickListener(this)
-        btn_completeProgress.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -151,5 +148,24 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
     private fun getUrlMessageLinkToUser(phoneNumberUser:String, emailUser:String): String {
         var url = "https://api.whatsapp.com/send?phone=+62$phoneNumberUser&text=Halo%20$emailUser,%20INI%20PETUGAS%20ANCANA"
         return url
+    }
+
+    private fun initializationIdLayout() {
+        disasterLocation = findViewById(R.id.detailLaporanActivity_disasterLocation)
+        disasterPhoto = findViewById(R.id.detailLaporanActivity_disasterPhoto)
+        reportByEmail = findViewById(R.id.detailLaporanActivity_reportByEmail)
+        disasterTime = findViewById(R.id.detailLaporanActivity_disasterTime)
+        disasterMapDetailLocation = findViewById(R.id.detailLaporanActivity_disasterDetailMapLocation)
+        disasterDetailText = findViewById(R.id.detailLaporanActivity_disasterDetailText)
+        btn_startProgress = findViewById(R.id.detailLaporanActivity_btn_startProgress)
+        btn_completeProgress = findViewById(R.id.detailLaporanActivity_btn_completeProgress)
+        linearlayoutIfWaiting = findViewById(R.id.detailLaporanActivity_linearlayout_if_waiting)
+        linearLayoutIfOnProgress = findViewById(R.id.detailLaporanActivity_linearlayoutOnProgress)
+
+        disasterMapDetailLocation.setOnClickListener(this)
+        disasterPhoto.setOnClickListener(this)
+        disasterDetailText.setOnClickListener(this)
+        btn_startProgress.setOnClickListener(this)
+        btn_completeProgress.setOnClickListener(this)
     }
 }

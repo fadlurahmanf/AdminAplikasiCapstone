@@ -14,4 +14,13 @@
         app:layout_constraintLeft_toRightOf="parent"
         tools:listitem="@layout/item_disaster_case"
         android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:id="@+id/fragmentOnProgress_loadingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
