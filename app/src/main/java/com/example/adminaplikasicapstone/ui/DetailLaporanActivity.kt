@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.adminaplikasicapstone.MainActivity
@@ -25,7 +26,11 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var disasterMapDetailLocation:TextView
     private lateinit var disasterDetailText:TextView
     private lateinit var btn_startProgress:Button
-    private lateinit var btn_completeProgress:Button
+    private lateinit var btn_completeProgress_ifWaiting:Button
+    private lateinit var btn_completeProgress_ifOnProgress:Button
+    private lateinit var linearLayoutIfWaiting:LinearLayout
+    private lateinit var linearLayoutIfOnProgress:LinearLayout
+    private lateinit var linearLayoutIfProgressComplete:LinearLayout
 
     private lateinit var extras:DisasterCaseDataModels
     companion object{
@@ -55,6 +60,20 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
 
         extras = intent?.getParcelableExtra<DisasterCaseDataModels>(DISASTER_CASE_DATA) as DisasterCaseDataModels
 
+        if (extras.disasterCaseStatus.toString()=="waiting"){
+            linearLayoutIfWaiting.visibility = View.VISIBLE
+            linearLayoutIfOnProgress.visibility = View.INVISIBLE
+            linearLayoutIfProgressComplete.visibility = View.INVISIBLE
+        }else if (extras.disasterCaseStatus.toString()=="onProgress"){
+            linearLayoutIfWaiting.visibility = View.INVISIBLE
+            linearLayoutIfOnProgress.visibility = View.VISIBLE
+            linearLayoutIfProgressComplete.visibility = View.INVISIBLE
+        }else if (extras.disasterCaseStatus.toString()=="complete"){
+            linearLayoutIfWaiting.visibility = View.INVISIBLE
+            linearLayoutIfOnProgress.visibility = View.INVISIBLE
+            linearLayoutIfProgressComplete.visibility = View.VISIBLE
+        }
+
         disasterLocation.text = extras.disasterLocation.toString()
         Glide.with(disasterPhoto).load(extras.disasterCaseDataPhoto).into(disasterPhoto)
         reportByEmail.text = extras.reportByEmail.toString()
@@ -70,13 +89,18 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
         disasterMapDetailLocation = findViewById(R.id.detailLaporanActivity_disasterDetailMapLocation)
         disasterDetailText = findViewById(R.id.detailLaporanActivity_disasterDetailText)
         btn_startProgress = findViewById(R.id.detailLaporanActivity_btn_startProgress)
-        btn_completeProgress = findViewById(R.id.detailLaporanActivity_btn_completeProgress)
+        btn_completeProgress_ifWaiting = findViewById(R.id.detailLaporanActivity_btn_completeProgress_if_waiting)
+        linearLayoutIfWaiting = findViewById(R.id.detailLaporanActivity_linearlayout_if_waiting)
+        btn_completeProgress_ifOnProgress = findViewById(R.id.detailLaporanActivity_btn_completeProgress_if_onprogress)
+        linearLayoutIfOnProgress = findViewById(R.id.detailLaporanActivity_linearlayout_if_onProgress)
+        linearLayoutIfProgressComplete = findViewById(R.id.detailLaporanActivity_linearlayout_if_progressComplete)
 
         disasterMapDetailLocation.setOnClickListener(this)
         disasterPhoto.setOnClickListener(this)
         disasterDetailText.setOnClickListener(this)
         btn_startProgress.setOnClickListener(this)
-        btn_completeProgress.setOnClickListener(this)
+        btn_completeProgress_ifWaiting.setOnClickListener(this)
+        btn_completeProgress_ifOnProgress.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -97,12 +121,20 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
             R.id.detailLaporanActivity_btn_startProgress->{
                 startProgressDisasterCase()
             }
+            R.id.detailLaporanActivity_btn_completeProgress_if_waiting->{
+//                val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
+//                startActivity(intent)
+            }
+            R.id.detailLaporanActivity_btn_completeProgress_if_onprogress->{
+                val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
     private fun startProgressDisasterCase() {
         var firestoreServices = FirestoreServices()
-        var updateStatusQuery = firestoreServices.DisasterCaseData().updateStatus("onProgress", extras?.disasterCaseID.toString())
+        var updateStatusQuery = firestoreServices.DisasterCaseData().updateStatus("onProgress", extras.disasterCaseID.toString())
         updateStatusQuery.addOnCompleteListener {
             if (it.isSuccessful){
                 val intent = Intent(this, MainActivity::class.java)
@@ -118,8 +150,8 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
         val latitude = extras.disasterLatitude.toString()
         val longitude = extras.disasterLongitude.toString()
         val googleMapLink = "http://maps.google.com/maps?q=loc:$latitude,$longitude"
-        val message = setMessageToOfficer(latitude, longitude, googleMapLink, extras?.disasterLocation,
-                extras?.reportByEmail, extras?.disasterCaseDetail)
+        val message = setMessageToOfficer(googleMapLink, extras.disasterLocation,
+                extras.reportByEmail, extras.disasterCaseDetail)
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.setPackage("com.whatsapp")
@@ -128,14 +160,12 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setMessageToOfficer(
-            latitude: String,
-            longitude: String,
             googleMapLink: String,
             disasterLocation: String?,
             reportByEmail: String?,
             disasterCaseDetail: String?
     ):String {
-        var messageToUser = getUrlMessageLinkToUser(extras?.reportByPhoneNumber.toString(), extras?.reportByEmail.toString())
+        var messageToUser = getUrlMessageLinkToUser(extras.reportByPhoneNumber.toString(), extras.reportByEmail.toString())
         var message = "KASUS DETAIL 'TIPE BENCANA' $disasterLocation" +
                 "\n" +
                 "\nDI LAPORKAN OLEH $reportByEmail" +
