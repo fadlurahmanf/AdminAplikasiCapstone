@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,7 @@ class OnProgressFragment : Fragment() {
 
     private lateinit var recycleviewlayout:RecyclerView
     private lateinit var loadingProgressBar: ProgressBar
+    private lateinit var textIsDisasterCaseDataIsEmpty:TextView
 
     private var listDisasterCaseData:ArrayList<DisasterCaseDataModels> = ArrayList<DisasterCaseDataModels>()
 
@@ -55,6 +57,7 @@ class OnProgressFragment : Fragment() {
         getAllDisasterCaseOnProgressData()
 
         setRecycleViewLayout()
+
     }
 
     private fun setRecycleViewLayout() {
@@ -80,7 +83,6 @@ class OnProgressFragment : Fragment() {
         getQuery.addOnCompleteListener {
             GlobalScope.launch(Dispatchers.IO) {
                 if (it.isSuccessful){
-                    loadingProgressBar.visibility = View.INVISIBLE
                     for (document in it.result!!) {
                         if (document[FirestoreObject.COL_DISASTER_CASE_STATUS].toString()=="onProgress"){
                             var firebaseStorageServices = FirebaseStorageServices()
@@ -104,6 +106,10 @@ class OnProgressFragment : Fragment() {
                         }
                     }
                     withContext(Dispatchers.Main){
+                        if (listDisasterCaseData.isEmpty()){
+                            textIsDisasterCaseDataIsEmpty.visibility = View.VISIBLE
+                        }
+                        loadingProgressBar.visibility = View.INVISIBLE
                         setRecycleViewLayout()
                     }
                 }
@@ -116,5 +122,8 @@ class OnProgressFragment : Fragment() {
     private fun initializationIdLayout(view: View) {
         recycleviewlayout = view.findViewById(R.id.fragmentOnProgress_recycleviewlayout)
         loadingProgressBar = view.findViewById(R.id.fragmentOnProgress_loadingBar)
+        textIsDisasterCaseDataIsEmpty = view.findViewById(R.id.fragmentOnProgress_isDisasterCaseIsEmpty)
+
+        textIsDisasterCaseDataIsEmpty.visibility = View.INVISIBLE
     }
 }

@@ -51,6 +51,8 @@ class ListDisasterCaseAdapter(var listDisasterCase: ArrayList<DisasterCaseDataMo
             holder.disasterCaseStatusText.setTextColor(Color.rgb(128,0,0))
         }else if (disasterCaseData.disasterCaseStatus=="onProgress"){
             holder.disasterCaseStatusText.setTextColor(Color.rgb(52,204,255))
+        }else if (disasterCaseData.disasterCaseStatus=="complete"){
+            holder.disasterCaseStatusText.setTextColor(Color.rgb(50,205,50))
         }
 
         holder.itemView.setOnClickListener {

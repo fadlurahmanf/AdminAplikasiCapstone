@@ -115,6 +115,7 @@ class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
         contentValue.put(FirestoreObject.COL_DISASTER_CASE_DETAIL, extras.disasterCaseDetail.toString())
         contentValue.put(FirestoreObject.COL_DETAIL_BY_ADMIN, detailByAdmin.text.toString())
         contentValue.put(FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL, extras.reportByEmail.toString())
+        contentValue.put(FirestoreObject.COL_DISASTER_CASE_IMAGE, "${extras.disasterCaseID}.png")
         // SET CONTENT VALUE FOR IMAGE
         contentValue.put(FirestoreObject.COL_LIST_IMAGE_REPORT_BY_ADMIN, listNameOfImage)
         contentValue.put(FirestoreObject.COL_DISASTER_LATITUDE, extras.disasterLatitude.toString())

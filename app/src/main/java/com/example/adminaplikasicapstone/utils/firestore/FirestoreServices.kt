@@ -34,5 +34,9 @@ class FirestoreServices {
         fun updateStatusToComplete(documentID: String, disasterDataCompleted:MutableMap<String, Any>): Task<Void> {
             return firestoreService.collection(COLLECTION_DISASTER_CASE_DATA_COMPLETE).document(documentID).set(disasterDataCompleted)
         }
+        fun gerAllDisasterCaseDataComplete(): Task<QuerySnapshot> {
+            return firestoreService.collection(COLLECTION_DISASTER_CASE_DATA_COMPLETE)
+                    .orderBy(COL_DISASTER_CASE_DATE, Query.Direction.DESCENDING).get()
+        }
     }
 }
