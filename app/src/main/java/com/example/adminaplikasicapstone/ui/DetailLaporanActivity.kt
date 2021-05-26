@@ -122,8 +122,8 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
                 startProgressDisasterCase()
             }
             R.id.detailLaporanActivity_btn_completeProgress_if_waiting->{
-//                val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
-//                startActivity(intent)
+                val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
+                startActivity(intent)
             }
             R.id.detailLaporanActivity_btn_completeProgress_if_onprogress->{
                 val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
