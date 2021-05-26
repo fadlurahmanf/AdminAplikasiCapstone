@@ -20,4 +20,8 @@ object FirestoreObject {
     const val COL_DISASTER_LONGITUDE = "longitude"
     const val COL_DISASTER_CASE_STATUS = "status"
     const val COL_DISASTER_CASE_DETAIL = "detail"
+
+    const val COLLECTION_DISASTER_CASE_DATA_COMPLETE = "disasterDataComplete"
+    const val COL_LIST_IMAGE_REPORT_BY_ADMIN = "completedImage"
+    const val COL_DETAIL_BY_ADMIN = "detailByAdmin"
 }

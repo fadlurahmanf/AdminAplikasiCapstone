@@ -123,10 +123,12 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.detailLaporanActivity_btn_completeProgress_if_waiting->{
                 val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
+                intent.putExtra(DISASTER_CASE_DATA, extras)
                 startActivity(intent)
             }
             R.id.detailLaporanActivity_btn_completeProgress_if_onprogress->{
                 val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
+                intent.putExtra(DISASTER_CASE_DATA, extras)
                 startActivity(intent)
             }
         }

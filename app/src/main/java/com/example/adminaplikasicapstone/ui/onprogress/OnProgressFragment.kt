@@ -85,6 +85,7 @@ class OnProgressFragment : Fragment() {
                         if (document[FirestoreObject.COL_DISASTER_CASE_STATUS].toString()=="onProgress"){
                             var firebaseStorageServices = FirebaseStorageServices()
                             var disasterCaseDataModels = DisasterCaseDataModels()
+                            disasterCaseDataModels.disasterCaseID = document[FirestoreObject.COL_DISASTER_CASE_ID].toString()
                             disasterCaseDataModels.reportByEmail = document[FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL].toString()
                             disasterCaseDataModels.disasterLocation = document[FirestoreObject.COL_DISASTER_LOCATION].toString()
                             disasterCaseDataModels.disasterLatitude = document[FirestoreObject.COL_DISASTER_LATITUDE].toString()
@@ -98,6 +99,7 @@ class OnProgressFragment : Fragment() {
                             }
                             disasterCaseDataModels.disasterDateTime = ConvertTime.getTimeByTimeStamp(document[FirestoreObject.COL_DISASTER_CASE_DATE].toString().toLong()).toString()
                             disasterCaseDataModels.disasterCaseDetail = document[FirestoreObject.COL_DISASTER_CASE_DETAIL].toString()
+                            disasterCaseDataModels.reportByPhoneNumber = document[FirestoreObject.COL_DISASTER_REPORT_BY_PHONE_NUMBER].toString()
                             listDisasterCaseData.add(disasterCaseDataModels)
                         }
                     }
