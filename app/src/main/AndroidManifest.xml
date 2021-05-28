@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminAplikasiCapstone">
-        <activity android:name=".ui.DetailMultiplePhotoActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".ui.CobaActivity"></activity>
+        <activity
+            android:name=".ui.DetailMultiplePhotoActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".ui.complete.DetailLaporanSelesai" />
         <activity android:name=".ui.SubmitLaporanSelesaiActivity" />
         <activity

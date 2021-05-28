@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adminaplikasicapstone.R
 import com.example.adminaplikasicapstone.models.DisasterCaseDataModels
+import com.example.adminaplikasicapstone.ui.CobaActivity
 import com.example.adminaplikasicapstone.ui.DetailLaporanActivity
 import com.example.adminaplikasicapstone.utils.ConvertTime
 import com.example.adminaplikasicapstone.utils.adapter.ListDisasterCaseAdapter
@@ -44,6 +45,8 @@ class WaitingFragment : Fragment(), View.OnClickListener {
     private lateinit var recycleViewLayout:RecyclerView
     private lateinit var textIsDisasterCaseDataIsEmpty:TextView
 
+    private lateinit var coba:Button
+
     private var listDisasterCaseData:ArrayList<DisasterCaseDataModels> = ArrayList<DisasterCaseDataModels>()
 
     override fun onCreateView(
@@ -66,6 +69,12 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         initializationIdLayout(view)
         getAllDisasterCaseData()
         setRecycleView()
+
+        coba = view.findViewById(R.id.coba)
+        coba.setOnClickListener {
+            val intent = Intent(this.context, CobaActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
