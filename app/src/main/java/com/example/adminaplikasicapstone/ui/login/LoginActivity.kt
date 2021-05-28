@@ -1,4 +1,4 @@
-package com.example.adminaplikasicapstone.ui
+package com.example.adminaplikasicapstone.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.adminaplikasicapstone.MainActivity
 import com.example.adminaplikasicapstone.R
+import com.example.adminaplikasicapstone.ui.regis.RegisterActivity
 import com.example.adminaplikasicapstone.utils.authentication.AuthenticationServices
-import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COLLECTION_ADMIN_DATA
-import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_EMAIL
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreServices
-import kotlinx.coroutines.runBlocking
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {

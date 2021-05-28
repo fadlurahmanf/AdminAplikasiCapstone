@@ -106,7 +106,7 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.detailLaporanActivity_disasterPhoto->{
-                val intent = Intent(this, DetailPhotoActivity::class.java)
+                val intent = Intent(this, DetailSinglePhotoActivity::class.java)
                 intent.putExtra("PHOTO", "${extras.disasterCaseDataPhoto}")
                 startActivity(intent)
             }
@@ -122,12 +122,12 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
                 startProgressDisasterCase()
             }
             R.id.detailLaporanActivity_btn_completeProgress_if_waiting->{
-                val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
+                val intent = Intent(this, SubmitLaporanSelesaiActivity::class.java)
                 intent.putExtra(DISASTER_CASE_DATA, extras)
                 startActivity(intent)
             }
             R.id.detailLaporanActivity_btn_completeProgress_if_onprogress->{
-                val intent = Intent(this, DetailLaporanSelesaiActivity::class.java)
+                val intent = Intent(this, SubmitLaporanSelesaiActivity::class.java)
                 intent.putExtra(DISASTER_CASE_DATA, extras)
                 startActivity(intent)
             }

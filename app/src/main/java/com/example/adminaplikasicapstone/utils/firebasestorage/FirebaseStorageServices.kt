@@ -20,8 +20,11 @@ class FirebaseStorageServices {
     }
     inner class DisasterDataComplete{
         fun putImage(documentID:String, photoName:String, imageUri: Uri): UploadTask {
-            return firebaseStorageServices.child("${FirestoreObject.COLLECTION_DISASTER_CASE_DATA_COMPLETE}/${documentID}/${photoName.toString()}.png")
+            return firebaseStorageServices.child("${FirestoreObject.COLLECTION_DISASTER_CASE_DATA_COMPLETE}/${documentID}/${photoName.toString()}")
                     .putFile(imageUri)
+        }
+        fun getURLimage(documentID: String, photoName: String): Task<Uri> {
+            return firebaseStorageServices.child("${FirestoreObject.COLLECTION_DISASTER_CASE_DATA_COMPLETE}/${documentID}/${photoName.toString()}").downloadUrl
         }
     }
 }

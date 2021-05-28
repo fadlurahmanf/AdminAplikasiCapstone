@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SubmitLaporanSelesaiActivity">
+
+    <ImageSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/submitLaporanSelesaiActivity_image"
+        android:layout_marginVertical="30dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/submitLaporanSelesaiActivity_imageViewLayout"
+        android:src="@drawable/ic_camera_black"/>
+        android:layout_marginVertical="30dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:text="SEBELUMNYA"
+        android:id="@+id/submitLaporanSelesaiActivity_btnPrevious"
+        android:layout_below="@id/submitLaporanSelesaiActivity_image"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:text="SELANJUTNYA"
+        android:id="@+id/submitLaporanSelesaiActivity_btnNext"
+        android:layout_below="@id/submitLaporanSelesaiActivity_image"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/submitLaporanSelesaiActivity_linearlayoutdetail"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="30dp"
+        android:layout_below="@id/submitLaporanSelesaiActivity_btnNext"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:text="Keterangan : "
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/submitLaporanSelesaiActivity_detailByAdmin"
+            android:hint="Tulis keterangan disini..."
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/submitLaporanSelesaiActivity_btnSubmit"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="SUBMIT"
+        android:layout_marginVertical="20dp"
+        android:layout_height="wrap_content"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/submitLaporanSelesaiActivity_loadingBar"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

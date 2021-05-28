@@ -1,4 +1,4 @@
-package com.example.adminaplikasicapstone.ui
+package com.example.adminaplikasicapstone.ui.regis
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

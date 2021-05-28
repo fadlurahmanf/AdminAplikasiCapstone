@@ -23,7 +23,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
+class SubmitLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var extras:DisasterCaseDataModels
 
@@ -43,7 +43,7 @@ class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
     private var pickedImages: ArrayList<Uri>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_laporan_selesai)
+        setContentView(R.layout.activity_submit_laporan_selesai)
 
         initializationIdLayout()
 
@@ -53,13 +53,13 @@ class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.detailLaporanSelesaiActivity_image->{
+            R.id.submitLaporanSelesaiActivity_image->{
                 pickImageFromGallery()
             }
-            R.id.detailLaporanSelesaiActivity_imageViewLayout->{
+            R.id.submitLaporanSelesaiActivity_imageViewLayout->{
                 pickImageFromGallery()
             }
-            R.id.detailLaporanSelesaiActivity_btnPrevious->{
+            R.id.submitLaporanSelesaiActivity_btnPrevious->{
                 if (positionImage>0){
                     positionImage--
                     imagesResult.setImageURI(pickedImages!![positionImage])
@@ -68,7 +68,7 @@ class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
                     imagesResult.setImageURI(pickedImages!![positionImage])
                 }
             }
-            R.id.detailLaporanSelesaiActivity_btnNext->{
+            R.id.submitLaporanSelesaiActivity_btnNext->{
                 if (positionImage<pickedImages!!.size-1){
                     positionImage++
                     imagesResult.setImageURI(pickedImages!![positionImage])
@@ -77,7 +77,7 @@ class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
                     imagesResult.setImageURI(pickedImages!![positionImage])
                 }
             }
-            R.id.detailLaporanSelesaiActivity_btnSubmit->{
+            R.id.submitLaporanSelesaiActivity_btnSubmit->{
                 putMultipleImageToFirebase()
             }
         }
@@ -118,6 +118,7 @@ class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
         contentValue.put(FirestoreObject.COL_DISASTER_CASE_IMAGE, "${extras.disasterCaseID}.png")
         // SET CONTENT VALUE FOR IMAGE
         contentValue.put(FirestoreObject.COL_LIST_IMAGE_REPORT_BY_ADMIN, listNameOfImage)
+        contentValue.put(FirestoreObject.COL_DISASTER_LOCATION, extras.disasterLocation.toString())
         contentValue.put(FirestoreObject.COL_DISASTER_LATITUDE, extras.disasterLatitude.toString())
         contentValue.put(FirestoreObject.COL_DISASTER_LONGITUDE, extras.disasterLongitude.toString())
         contentValue.put(FirestoreObject.COL_DISASTER_REPORT_BY_PHONE_NUMBER, extras.reportByPhoneNumber.toString())
@@ -190,14 +191,14 @@ class DetailLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initializationIdLayout() {
-        imagesResult = findViewById(R.id.detailLaporanSelesaiActivity_image)
-        btn_previous = findViewById(R.id.detailLaporanSelesaiActivity_btnPrevious)
-        btn_next = findViewById(R.id.detailLaporanSelesaiActivity_btnNext)
-        imageView = findViewById(R.id.detailLaporanSelesaiActivity_imageViewLayout)
-        detailByAdmin = findViewById(R.id.detailLaporanSelesaiActivity_detailByAdmin)
-        btn_submit = findViewById(R.id.detailLaporanSelesaiActivity_btnSubmit)
-        linearlayoutDetail = findViewById(R.id.detailLaporanSelesaiActivity_linearlayoutdetail)
-        loadingBar = findViewById(R.id.detailLaporanSelesaiActivity_loadingBar)
+        imagesResult = findViewById(R.id.submitLaporanSelesaiActivity_image)
+        btn_previous = findViewById(R.id.submitLaporanSelesaiActivity_btnPrevious)
+        btn_next = findViewById(R.id.submitLaporanSelesaiActivity_btnNext)
+        imageView = findViewById(R.id.submitLaporanSelesaiActivity_imageViewLayout)
+        detailByAdmin = findViewById(R.id.submitLaporanSelesaiActivity_detailByAdmin)
+        btn_submit = findViewById(R.id.submitLaporanSelesaiActivity_btnSubmit)
+        linearlayoutDetail = findViewById(R.id.submitLaporanSelesaiActivity_linearlayoutdetail)
+        loadingBar = findViewById(R.id.submitLaporanSelesaiActivity_loadingBar)
 
         loadingBar.visibility = View.INVISIBLE
 
