@@ -2,9 +2,7 @@ package com.example.adminaplikasicapstone.ui.waiting
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -54,10 +52,6 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         waitingViewModel =
                 ViewModelProvider(this).get(WaitingViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_waiting, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        waitingViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
         return root
     }
 

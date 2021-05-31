@@ -16,8 +16,8 @@
             android:name=".ui.DetailSinglePhotoActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".ui.DetailLaporanActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.regis.RegisterActivity" />
+        <activity android:name=".ui.login.LoginActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.regis.RegisterActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashScreen"

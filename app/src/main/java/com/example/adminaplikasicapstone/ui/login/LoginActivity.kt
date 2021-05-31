@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.adminaplikasicapstone.MainActivity
@@ -18,7 +19,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var email_text:EditText
     private lateinit var password_text:EditText
     private lateinit var btn_Login:Button
-    private lateinit var btn_regis:Button
+    private lateinit var btn_regis:TextView
 
     private var listEmail:ArrayList<String> = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {

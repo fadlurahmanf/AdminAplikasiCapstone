@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.adminaplikasicapstone.R
 import com.example.adminaplikasicapstone.utils.authentication.AuthenticationServices
@@ -18,7 +19,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var password_text:EditText
     private lateinit var city_text:EditText
     private lateinit var btn_regis:Button
-    private lateinit var btn_login:Button
+    private lateinit var btn_login:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
