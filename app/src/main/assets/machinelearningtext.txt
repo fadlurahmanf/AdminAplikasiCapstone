@@ -1,4 +1,4 @@
-cyclone
-earthquake
-flood
-wildfire
+CYCLONE
+FLOOD
+EARTHQUAKE
+WILDFIRE
