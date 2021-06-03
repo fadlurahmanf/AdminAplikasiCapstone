@@ -25,6 +25,7 @@ class ListDisasterCaseAdapter(var listDisasterCase: ArrayList<DisasterCaseDataMo
     inner class ListViewHolder(itemView:View):RecyclerView.ViewHolder(itemView) {
         var reportByEmail:TextView = itemView.findViewById(R.id.item_disasterReportBy)
         var disasterCasePhoto:ImageView = itemView.findViewById(R.id.item_image_disasterCase)
+        var disasterCaseType:TextView = itemView.findViewById(R.id.item_disaster_type)
         var disasterCaseStatusText:TextView = itemView.findViewById(R.id.item_disaster_case_status)
         var disasterCaseLocation:TextView = itemView.findViewById(R.id.item_disaster_location)
         var disasterCaseDateTime:TextView = itemView.findViewById(R.id.item_disastercase_time)
@@ -43,6 +44,7 @@ class ListDisasterCaseAdapter(var listDisasterCase: ArrayList<DisasterCaseDataMo
         var disasterCaseData = listDisasterCase[position]
 
         Glide.with(holder.disasterCasePhoto).load(disasterCaseData.disasterCaseDataPhoto).into(holder.disasterCasePhoto)
+        holder.disasterCaseType.text = disasterCaseData.disasterType.toString()
         holder.disasterCaseStatusText.text = disasterCaseData.disasterCaseStatus.toString()
         holder.reportByEmail.text = disasterCaseData.reportByEmail.toString()
         holder.disasterCaseLocation.text = disasterCaseData.disasterLocation.toString()

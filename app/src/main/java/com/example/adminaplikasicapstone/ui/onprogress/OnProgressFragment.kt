@@ -88,6 +88,7 @@ class OnProgressFragment : Fragment() {
                             var firebaseStorageServices = FirebaseStorageServices()
                             var disasterCaseDataModels = DisasterCaseDataModels()
                             disasterCaseDataModels.disasterCaseID = document[FirestoreObject.COL_DISASTER_CASE_ID].toString()
+                            disasterCaseDataModels.disasterType = document[FirestoreObject.COL_DISASTER_TYPE].toString()
                             disasterCaseDataModels.reportByEmail = document[FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL].toString()
                             disasterCaseDataModels.disasterLocation = document[FirestoreObject.COL_DISASTER_LOCATION].toString()
                             disasterCaseDataModels.disasterLatitude = document[FirestoreObject.COL_DISASTER_LATITUDE].toString()

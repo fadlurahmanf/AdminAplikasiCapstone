@@ -168,15 +168,17 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
             disasterCaseDetail: String?
     ):String {
         var messageToUser = getUrlMessageLinkToUser(extras.reportByPhoneNumber.toString(), extras.reportByEmail.toString())
-        var message = "KASUS DETAIL 'TIPE BENCANA' $disasterLocation" +
+        var message = "KASUS DETAIL ${extras.disasterType} - $disasterLocation" +
                 "\n" +
-                "\nDI LAPORKAN OLEH $reportByEmail" +
+                "\nPELAPOR : $reportByEmail" +
                 "\n" +
-                "\nSILAHKAN CHAT PELAPOR MELALUI $messageToUser" +
+                "\nNOMOR PELAPOR : ${extras.reportByPhoneNumber}" +
                 "\n" +
-                "\nALAMAT LOKASI BENCANA : $googleMapLink" +
+                "\nWHATSAPP PELAPOR : $messageToUser" +
                 "\n" +
-                "\nDETAIL KETERANGAN : $disasterCaseDetail"
+                "\nLOKASI : $googleMapLink" +
+                "\n" +
+                "\nDETAIL DARI PELAPOR : $disasterCaseDetail"
         return message
     }
 

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="KEBAKARAN"
+                    android:text="TIPE BENCANA"
                     android:layout_marginHorizontal="5dp"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="Detail dari pelapor"
+                    android:text="DETAIL DARI PELAPOR"
                     android:layout_marginVertical="5dp"
                     android:textColor="@color/purple_500"
                     android:layout_marginHorizontal="5dp"
@@ -171,6 +171,7 @@
                     android:layout_width="wrap_content"
                     android:text="FOTO PELAPORAN"
                     android:layout_marginVertical="5dp"
+                    android:textColor="@color/purple_500"
                     android:layout_marginHorizontal="5dp"
                     android:layout_height="wrap_content"/>
                 <LinearLayout
@@ -204,7 +205,8 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="Keterangan dari admin"
+                    android:text="KETERANGAN DARI ADMIN"
+                    android:textColor="@color/purple_500"
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginVertical="5dp"
                     android:layout_height="wrap_content"/>

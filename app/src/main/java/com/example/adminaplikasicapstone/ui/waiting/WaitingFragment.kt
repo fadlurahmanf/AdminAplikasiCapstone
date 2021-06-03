@@ -27,6 +27,7 @@ import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DIS
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_LONGITUDE
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_REPORT_BY_PHONE_NUMBER
+import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_TYPE
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreServices
 import com.google.firebase.storage.StorageException
 import kotlinx.coroutines.Dispatchers
@@ -95,6 +96,7 @@ class WaitingFragment : Fragment(), View.OnClickListener {
                             var firebaseStorageServices = FirebaseStorageServices()
                             var disasterCaseDataModels = DisasterCaseDataModels()
                             disasterCaseDataModels.disasterCaseID = document[COL_DISASTER_CASE_ID].toString()
+                            disasterCaseDataModels.disasterType = document[COL_DISASTER_TYPE].toString()
                             disasterCaseDataModels.reportByEmail = document[COL_DISASTER_REPORT_BY_EMAIL].toString()
                             disasterCaseDataModels.disasterLocation = document[COL_DISASTER_LOCATION].toString()
                             disasterCaseDataModels.disasterLatitude = document[COL_DISASTER_LATITUDE].toString()
