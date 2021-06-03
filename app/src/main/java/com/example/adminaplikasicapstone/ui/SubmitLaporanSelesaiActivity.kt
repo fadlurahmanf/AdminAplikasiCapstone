@@ -111,6 +111,7 @@ class SubmitLaporanSelesaiActivity : AppCompatActivity(), View.OnClickListener {
     private fun insertDisasterDataCompletedToFirestore(listNameOfImage:ArrayList<String>){
         var contentValue:MutableMap<String, Any> = HashMap()
         contentValue.put(FirestoreObject.COL_DISASTER_CASE_ID, extras.disasterCaseID.toString())
+        contentValue.put(FirestoreObject.COL_DISASTER_TYPE, extras.disasterType.toString())
         contentValue.put(FirestoreObject.COL_DISASTER_CASE_DATE, extras.disasterDateTime.toString())
         contentValue.put(FirestoreObject.COL_DISASTER_CASE_DETAIL, extras.disasterCaseDetail.toString())
         contentValue.put(FirestoreObject.COL_DETAIL_BY_ADMIN, detailByAdmin.text.toString())
