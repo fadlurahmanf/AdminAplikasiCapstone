@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:id="@+id/detailLaporanActivity_disasterType"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="KEBAKARAN"
+            android:text="TIPE BENCANA"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_marginHorizontal="5dp"

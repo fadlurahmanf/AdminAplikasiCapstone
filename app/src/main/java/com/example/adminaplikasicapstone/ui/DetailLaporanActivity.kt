@@ -74,6 +74,7 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
             linearLayoutIfProgressComplete.visibility = View.VISIBLE
         }
 
+        disasterType.text = extras.disasterType.toString()
         disasterLocation.text = extras.disasterLocation.toString()
         Glide.with(disasterPhoto).load(extras.disasterCaseDataPhoto).into(disasterPhoto)
         reportByEmail.text = extras.reportByEmail.toString()
@@ -84,6 +85,7 @@ class DetailLaporanActivity : AppCompatActivity(), View.OnClickListener {
     private fun initializationIdLayout() {
         disasterLocation = findViewById(R.id.detailLaporanActivity_disasterLocation)
         disasterPhoto = findViewById(R.id.detailLaporanActivity_disasterPhoto)
+        disasterType = findViewById(R.id.detailLaporanActivity_disasterType)
         reportByEmail = findViewById(R.id.detailLaporanActivity_reportByEmail)
         disasterTime = findViewById(R.id.detailLaporanActivity_disasterTime)
         disasterMapDetailLocation = findViewById(R.id.detailLaporanActivity_disasterDetailMapLocation)
