@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.complete.DetailLaporanSelesai">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:id="@+id/detailLaporanSelesaiActivity_image"
+        android:layout_marginVertical="10dp"
+        android:layout_height="300dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/detailLaporanSelesaiActivity_image"
+        android:paddingVertical="20dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="TIPE BENCANA"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="-"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="KOTA BENCANA"
+                    android:textStyle="bold"
+                    android:id="@+id/detailLaporanSelesaiActivity_disasterCityLocation"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_layout_border_bottom"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="DILAPORKAN OLEH"
+                    android:textColor="@color/purple_500"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="EMAIL PENGGUNA"
+                    android:textStyle="bold"
+                    android:layout_marginVertical="5dp"
+                    android:id="@+id/detailLaporanSelesaiActivity_reportByEmail"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/item_layout_border_bottom"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="DILAPORKAN PADA"
+                    android:textColor="@color/purple_500"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/detailLaporanSelesaiActivity_disasterDateTime"
+                    android:textStyle="bold"
+                    android:text="JAM BENCANA"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/item_layout_border_bottom"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="LOKASI BENCANA"
+                    android:textColor="@color/purple_500"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_location_black"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="BUKA MAPS"
+                        android:id="@+id/detailLaporanSelesaiActivity_openDetailMapsLocation"
+                        android:textStyle="bold"
+                        android:layout_marginVertical="5dp"
+                        android:textColor="@color/blue"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/item_layout_border_bottom"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="DETAIL DARI PELAPOR"
+                    android:layout_marginVertical="5dp"
+                    android:textColor="@color/purple_500"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:id="@+id/detailLaporanSelesaiActivity_detailByUser"
+                    android:text="DETAIL KETERANGAN OLEH PELAPOR"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="LAPORAN DARI ADMIN"
+                android:textStyle="bold"
+                android:layout_marginVertical="20dp"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/item_layout_border_bottom"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="FOTO PELAPORAN"
+                    android:layout_marginVertical="5dp"
+                    android:textColor="@color/purple_500"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/ic_camera_black"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:id="@+id/detailLaporanSelesaiActivity_openPhotoFromAdmin"
+                        android:text="LIHAT FOTO"
+                        android:textStyle="bold"
+                        android:layout_marginVertical="5dp"
+                        android:textColor="@color/blue"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/item_layout_border_bottom"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="KETERANGAN DARI ADMIN"
+                    android:textColor="@color/purple_500"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="DETAIL DARI ADMIN"
+                    android:id="@+id/detailLaporanSelesaiActivity_detailByAdmin"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

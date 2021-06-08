@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.widget.ImageView
-import com.example.adminaplikasicapstone.ui.LoginActivity
+import com.example.adminaplikasicapstone.ui.login.LoginActivity
 import com.example.adminaplikasicapstone.utils.authentication.AuthenticationServices
 
 class SplashScreen : AppCompatActivity() {

@@ -14,9 +14,11 @@ data class DisasterCaseDataModels(
         var disasterLongitude:String?="",
         var disasterCaseStatus:String?="",
         var disasterDateTime:String?="",
-        var disasterCaseDetail:String?=""
+        var disasterCaseDetail:String?="",
+        var disasterCaseDetailByAdmin:String?=""
 ):Parcelable {
         constructor(parcel: Parcel) : this(
+                parcel.readString(),
                 parcel.readString(),
                 parcel.readString(),
                 parcel.readString(),
@@ -42,6 +44,7 @@ data class DisasterCaseDataModels(
                 parcel.writeString(disasterCaseStatus)
                 parcel.writeString(disasterDateTime)
                 parcel.writeString(disasterCaseDetail)
+                parcel.writeString(disasterCaseDetailByAdmin)
         }
 
         override fun describeContents(): Int {

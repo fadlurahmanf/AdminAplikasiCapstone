@@ -1,26 +1,25 @@
-package com.example.adminaplikasicapstone.ui
+package com.example.adminaplikasicapstone.ui.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.adminaplikasicapstone.MainActivity
 import com.example.adminaplikasicapstone.R
+import com.example.adminaplikasicapstone.ui.regis.RegisterActivity
 import com.example.adminaplikasicapstone.utils.authentication.AuthenticationServices
-import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COLLECTION_ADMIN_DATA
-import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_EMAIL
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreServices
-import kotlinx.coroutines.runBlocking
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var email_text:EditText
     private lateinit var password_text:EditText
     private lateinit var btn_Login:Button
-    private lateinit var btn_regis:Button
+    private lateinit var btn_regis:TextView
 
     private var listEmail:ArrayList<String> = ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {

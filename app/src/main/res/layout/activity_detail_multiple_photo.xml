@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/black"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetailMultiplePhotoActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/detailMultiplePhoto_image"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp"/>
+
+    <ImageView
+        android:layout_width="75dp"
+        android:id="@+id/detailMultiplePhoto_btn_previous"
+        android:src="@drawable/ic_arrow_back_white"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_height="75dp"/>
+
+    <ImageView
+        android:layout_width="75dp"
+        android:src="@drawable/ic_arrow_forward_white"
+        android:id="@+id/detailMultiplePhoto_btn_next"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_height="75dp"/>
+
+</RelativeLayout>

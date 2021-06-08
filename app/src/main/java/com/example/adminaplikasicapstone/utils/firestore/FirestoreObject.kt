@@ -13,11 +13,15 @@ object FirestoreObject {
     const val COL_DISASTER_CASE_DATE = "date_time"
     const val COL_DISASTER_CASE_IMAGE = "image"
     const val COL_DISASTER_LOCATION = "location"
-    const val COL_DISASTER_TYPE = "type"
+    const val COL_DISASTER_TYPE = "tipe_bencana"
     const val COL_DISASTER_REPORT_BY_EMAIL = "email"
     const val COL_DISASTER_REPORT_BY_PHONE_NUMBER = "phone_number"
     const val COL_DISASTER_LATITUDE = "latitude"
     const val COL_DISASTER_LONGITUDE = "longitude"
     const val COL_DISASTER_CASE_STATUS = "status"
     const val COL_DISASTER_CASE_DETAIL = "detail"
+
+    const val COLLECTION_DISASTER_CASE_DATA_COMPLETE = "disasterDataComplete"
+    const val COL_LIST_IMAGE_REPORT_BY_ADMIN = "completedImage"
+    const val COL_DETAIL_BY_ADMIN = "detailByAdmin"
 }

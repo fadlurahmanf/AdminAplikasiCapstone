@@ -2,9 +2,7 @@ package com.example.adminaplikasicapstone.ui.waiting
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -29,6 +27,7 @@ import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DIS
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_LONGITUDE
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_REPORT_BY_EMAIL
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_REPORT_BY_PHONE_NUMBER
+import com.example.adminaplikasicapstone.utils.firestore.FirestoreObject.COL_DISASTER_TYPE
 import com.example.adminaplikasicapstone.utils.firestore.FirestoreServices
 import com.google.firebase.storage.StorageException
 import kotlinx.coroutines.Dispatchers
@@ -42,8 +41,7 @@ class WaitingFragment : Fragment(), View.OnClickListener {
     private lateinit var waitingViewModel: WaitingViewModel
     private lateinit var loadingProgressBar:ProgressBar
     private lateinit var recycleViewLayout:RecyclerView
-
-    private lateinit var conba:Button
+    private lateinit var textIsDisasterCaseDataIsEmpty:TextView
 
     private var listDisasterCaseData:ArrayList<DisasterCaseDataModels> = ArrayList<DisasterCaseDataModels>()
 
@@ -55,10 +53,6 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         waitingViewModel =
                 ViewModelProvider(this).get(WaitingViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_waiting, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        waitingViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
         return root
     }
 
@@ -68,9 +62,6 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         getAllDisasterCaseData()
         setRecycleView()
 
-        conba = view.findViewById(R.id.coba)
-        conba.setOnClickListener {
-        }
     }
 
     override fun onClick(v: View?) {
@@ -100,12 +91,12 @@ class WaitingFragment : Fragment(), View.OnClickListener {
         getQuery.addOnCompleteListener {
             GlobalScope.launch(Dispatchers.IO) {
                 if (it.isSuccessful){
-                    loadingProgressBar.visibility = View.INVISIBLE
                     for (document in it.result!!) {
                         if (document[COL_DISASTER_CASE_STATUS].toString()=="waiting"){
                             var firebaseStorageServices = FirebaseStorageServices()
                             var disasterCaseDataModels = DisasterCaseDataModels()
                             disasterCaseDataModels.disasterCaseID = document[COL_DISASTER_CASE_ID].toString()
+                            disasterCaseDataModels.disasterType = document[COL_DISASTER_TYPE].toString()
                             disasterCaseDataModels.reportByEmail = document[COL_DISASTER_REPORT_BY_EMAIL].toString()
                             disasterCaseDataModels.disasterLocation = document[COL_DISASTER_LOCATION].toString()
                             disasterCaseDataModels.disasterLatitude = document[COL_DISASTER_LATITUDE].toString()
@@ -124,6 +115,10 @@ class WaitingFragment : Fragment(), View.OnClickListener {
                         }
                     }
                     withContext(Dispatchers.Main){
+                        if (listDisasterCaseData.isEmpty()){
+                            textIsDisasterCaseDataIsEmpty.visibility = View.VISIBLE
+                        }
+                        loadingProgressBar.visibility = View.INVISIBLE
                         setRecycleView()
                     }
                 }
@@ -136,6 +131,9 @@ class WaitingFragment : Fragment(), View.OnClickListener {
     private fun initializationIdLayout(view: View) {
         recycleViewLayout = view.findViewById(R.id.waitingfragment_recycleviewlayout)
         loadingProgressBar = view.findViewById(R.id.waitingfragment_loadingbar)
+        textIsDisasterCaseDataIsEmpty = view.findViewById(R.id.fragmentWaiting_isDisasterCaseIsEmpty)
+
+        textIsDisasterCaseDataIsEmpty.visibility = View.INVISIBLE
 
     }
 }

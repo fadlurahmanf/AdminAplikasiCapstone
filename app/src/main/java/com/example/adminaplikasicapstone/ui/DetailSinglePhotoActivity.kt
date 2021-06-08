@@ -6,11 +6,11 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.adminaplikasicapstone.R
 
-class DetailPhotoActivity : AppCompatActivity() {
+class DetailSinglePhotoActivity : AppCompatActivity() {
     private lateinit var disasterPhoto:ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_photo)
+        setContentView(R.layout.activity_detail_single_photo)
         disasterPhoto = findViewById(R.id.detailPhotoActivity_disasterImage)
 
         var extras = intent.getStringExtra("PHOTO")

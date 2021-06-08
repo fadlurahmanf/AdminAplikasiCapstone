@@ -1,54 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RegisterActivity">
+    android:orientation="vertical"
+    tools:context=".ui.regis.RegisterActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:id="@+id/registeractivity_email"
-        android:hint="EMAIL"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_height="wrap_content"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:id="@+id/registeractivity_city"
-        android:hint="KOTA"
-        app:layout_constraintTop_toBottomOf="@id/registeractivity_email"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/registeractivity_imageLogo"
+            android:src="@drawable/logo_ancana_purple"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintRight_toRightOf="parent"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:id="@+id/registeractivity_phoneNumber"
-        android:hint="PHONE NUMBER"
-        app:layout_constraintTop_toBottomOf="@id/registeractivity_city"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:id="@+id/registeractivity_password"
-        app:layout_constraintTop_toBottomOf="@id/registeractivity_phoneNumber"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:hint="Password"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/registeractivity_linearlayout_email"
+            android:layout_marginVertical="30dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/registeractivity_imageLogo">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Email"
+                android:textColor="@color/purple_500"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:id="@+id/registeractivity_email"
+                android:hint="Ketik email"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/registeractivity_btnRegis"
-        app:layout_constraintTop_toBottomOf="@id/registeractivity_password"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="DAFTAR"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/registeractivity_btn_login"
-        app:layout_constraintTop_toBottomOf="@id/registeractivity_btnRegis"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/registeractivity_linearlayout_email"
+            android:id="@+id/registeractivity_linearlayout_city"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/purple_500"
+                android:text="Kota" />
+            <EditText
+                android:layout_width="match_parent"
+                android:id="@+id/registeractivity_city"
+                android:hint="Ketik kota"
+                app:layout_constraintTop_toBottomOf="@id/registeractivity_email"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/registeractivity_linearlayout_city"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:id="@+id/loginactivity_linearlayout_phoneNumber">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Nomor Telepon"
+                android:textColor="@color/purple_500"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:id="@+id/registeractivity_phoneNumber"
+                android:layout_marginVertical="5dp"
+                android:hint="Ketik nomor telepon"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            app:layout_constraintTop_toBottomOf="@id/loginactivity_linearlayout_phoneNumber"
+            android:id="@+id/loginactivity_linearlayout_password">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/purple_500"
+                android:text="Password"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="textPassword"
+                android:id="@+id/registeractivity_password"
+                android:hint="Ketik password"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:id="@+id/loginactivity_linearlayout_confpassword"
+            app:layout_constraintTop_toBottomOf="@id/loginactivity_linearlayout_password">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Konfirmasi Password"
+                android:textColor="@color/purple_500"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="textPassword"
+                android:layout_marginVertical="5dp"
+                android:id="@+id/registeractivity_confpassword"
+                android:hint="Ketik konfirmasi password"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="200dp"
+            android:id="@+id/registeractivity_btnRegis"
+            app:layout_constraintTop_toBottomOf="@id/loginactivity_linearlayout_confpassword"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/white"
+            android:background="@drawable/design_button"
+            android:text="DAFTAR"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginVertical="10dp"
+            app:layout_constraintTop_toBottomOf="@id/registeractivity_btnRegis"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sudah punya akun ?"
+                android:layout_marginHorizontal="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="LOGIN"
+                android:textStyle="bold|italic"
+                android:id="@+id/registeractivity_btn_login"
+                app:layout_constraintTop_toBottomOf="@id/registeractivity_btnRegis"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
